@@ -3,9 +3,11 @@ require('es6-promise').polyfill();
 
 // Requires
 var gulp = require('gulp');
+var watch = require('gulp-watch');
 var sass = require('gulp-sass');
 var autoprefixer  = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
+var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
@@ -19,9 +21,11 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('dist/styles'))
 });
 
-//Watcher
-gulp.task('watch', function(){
-  gulp.watch('src/styles/*.scss', ['sass']);
+// Minify JS
+gulp.task('js', function() {
+    return gulp.src('src/js/*.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/js'))
 });
 
 // Image Minify
@@ -29,6 +33,13 @@ gulp.task('images', function(){
   return gulp.src('src/img/*.+(png|jpg|gif|svg)')
   .pipe(imagemin())
   .pipe(gulp.dest('dist/img'))
+});
+
+//Watcher
+gulp.task('watch', function(){
+    gulp.watch('src/styles/*.scss', ['sass']).on('change', reload);
+    gulp.watch('src/js/*.js', ['js']).on('change', reload);
+    gulp.watch('src/img/*.+(png|jpg|gif|svg)', ['images']).on('change', reload);
 });
 
 // Browsersync
@@ -44,4 +55,4 @@ gulp.task('serve', function () {
 });
 
 // Run tasks on 'gulp'
-gulp.task('default', ['sass', 'watch', 'serve', 'images']);
+gulp.task('default', ['sass', 'js', 'watch', 'serve', 'images']);

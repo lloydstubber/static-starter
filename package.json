@@ -1,7 +1,13 @@
 {
+<<<<<<< HEAD
   "name": "Static Starter",
   "version": "1.0.0",
   "description": "",
+=======
+  "name": "static-starter",
+  "version": "1.0.0",
+  "description": "Static starter WIP",
+>>>>>>> 1845b4490ac0e035654d044c36b99b18d59dc136
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
@@ -11,12 +17,19 @@
     "gulp-autoprefixer": "^4.0.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-imagemin": "^3.3.0",
+<<<<<<< HEAD
     "gulp-sass": "^3.1.0"
+=======
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^4.3.11"
+>>>>>>> 1845b4490ac0e035654d044c36b99b18d59dc136
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
+<<<<<<< HEAD
     "type": "",
     "url": ""
   },
@@ -24,6 +37,15 @@
   "license": "",
   "bugs": {
     "url": ""
+=======
+    "type": "Git",
+    "url": "https://github.com/lloydstubber/Static-Starter"
+  },
+  "author": "Lloyd Stubber",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lloydstubber/Static-Starter/issues"
+>>>>>>> 1845b4490ac0e035654d044c36b99b18d59dc136
   },
   "homepage": ""
 }
