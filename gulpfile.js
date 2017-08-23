@@ -3,6 +3,7 @@ require('es6-promise').polyfill();
 
 // Requires
 var gulp = require('gulp');
+var plumber = require('gulp-plumber');
 var watch = require('gulp-watch');
 var sass = require('gulp-sass');
 var autoprefixer  = require('gulp-autoprefixer');
@@ -15,6 +16,7 @@ var reload = browserSync.reload;
 // Stylesheets
 gulp.task('sass', function() {
     return gulp.src('src/styles/*.scss')
+        .pipe(plumber())
         .pipe(sass())
         .pipe(autoprefixer('last 2 versions'))
         .pipe(cssnano())
