@@ -8,6 +8,7 @@ var watch = require('gulp-watch');
 var sass = require('gulp-sass');
 var autoprefixer  = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
+var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var browserSync = require('browser-sync').create();
@@ -17,9 +18,11 @@ var reload = browserSync.reload;
 gulp.task('sass', function() {
     return gulp.src('src/styles/*.scss')
         .pipe(plumber())
-        .pipe(sass())
-        .pipe(autoprefixer('last 2 versions'))
-        .pipe(cssnano())
+        .pipe(sourcemaps.init())
+            .pipe(sass())
+            .pipe(autoprefixer('last 2 versions'))
+            .pipe(cssnano())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist/styles'))
 });
 
