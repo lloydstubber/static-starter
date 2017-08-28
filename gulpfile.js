@@ -52,7 +52,8 @@ gulp.task('serve', function () {
     // Serve files from the root of this project
     browserSync.init({
         server: {
-            baseDir: "./"
+            baseDir: "./",
+            tunnel: false // True for unique testing link
         }
     });
 
