@@ -14,6 +14,7 @@ This is a static starter template that uses Gulp. Best used for holding pages/on
 - CSS Minification
 - CSS Sourcemaps
 - JS Minification
+- JS Concat
 - Browsersync
 - Image Compression
 - Error Notifications
