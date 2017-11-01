@@ -25,6 +25,7 @@ gulp.task('sass', function () {
     .pipe(cssnano())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/styles'))
+    .pipe(browserSync.stream())
 });
 
 // Minify JS
@@ -51,7 +52,7 @@ gulp.task('images', function () {
 
 //Watcher
 gulp.task('watch', function () {
-  gulp.watch('src/styles/*.scss', ['sass']).on('change', reload);
+  gulp.watch('src/styles/*.scss', ['sass']);
   gulp.watch('src/js/*.js', ['js']).on('change', reload);
   gulp.watch('src/js/vendor/*.js', ['vendor']).on('change', reload);
   gulp.watch('src/img/*.+(png|jpg|gif|svg)', ['images']).on('change', reload);
