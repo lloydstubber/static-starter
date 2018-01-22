@@ -8,11 +8,12 @@ This is a static starter template that uses Gulp. Best used for holding pages/on
 - Run `npm install` then `gulp`
 - This will then run all tasks and create the `dist/` folder
 
-## Features
+### Features
 - SCSS Compilation
 - CSS Autoprefixer
 - CSS Minification
 - CSS Sourcemaps
+- ES6 Support
 - JS Minification
 - JS Concat
 - Browsersync

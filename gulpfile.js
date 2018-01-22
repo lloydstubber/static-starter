@@ -2,21 +2,22 @@
 require('es6-promise').polyfill();
 
 // Requires
-var gulp = require('gulp');
-var plumber = require('gulp-plumber');
-var watch = require('gulp-watch');
-var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
-var cssnano = require('gulp-cssnano');
-var sourcemaps = require('gulp-sourcemaps');
-var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
-var imagemin = require('gulp-imagemin');
-var browserSync = require('browser-sync').create();
-var reload = browserSync.reload;
+const gulp = require('gulp');
+const babel = require('gulp-babel');
+const plumber = require('gulp-plumber');
+const watch = require('gulp-watch');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const cssnano = require('gulp-cssnano');
+const sourcemaps = require('gulp-sourcemaps');
+const uglify = require('gulp-uglify');
+const concat = require('gulp-concat');
+const imagemin = require('gulp-imagemin');
+const browserSync = require('browser-sync').create();
+const reload = browserSync.reload;
 
 // Stylesheets
-gulp.task('sass', function () {
+gulp.task('sass', () => {
   return gulp.src('src/styles/*.scss')
     .pipe(plumber())
     .pipe(sourcemaps.init())
@@ -29,14 +30,17 @@ gulp.task('sass', function () {
 });
 
 // Minify JS
-gulp.task('js', function () {
-  return gulp.src('src/js/*.js')
+gulp.task('js', () => {
+  gulp.src('src/js/*.js')
+      .pipe(babel({
+        presets: ['env']
+    }))
     .pipe(uglify())
     .pipe(gulp.dest('dist/js'))
 });
 
 // Vendor Concat
-gulp.task('vendor', function () {
+gulp.task('vendor', () => {
   return gulp.src('src/js/vendor/*.js')
     .pipe(concat('vendor.js'))
     .pipe(uglify())
@@ -44,14 +48,14 @@ gulp.task('vendor', function () {
 });
 
 // Image Minify
-gulp.task('images', function () {
+gulp.task('images', () => {
   return gulp.src('src/img/*.+(png|jpg|gif|svg)')
     .pipe(imagemin())
     .pipe(gulp.dest('dist/img'))
 });
 
 //Watcher
-gulp.task('watch', function () {
+gulp.task('watch', () => {
   gulp.watch('src/styles/*.scss', ['sass']);
   gulp.watch('src/js/*.js', ['js']).on('change', reload);
   gulp.watch('src/js/vendor/*.js', ['vendor']).on('change', reload);
@@ -59,7 +63,7 @@ gulp.task('watch', function () {
 });
 
 // Browsersync
-gulp.task('serve', function () {
+gulp.task('serve', () => {
   // Serve files from the root of this project
   browserSync.init({
     server: {
